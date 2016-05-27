@@ -14,106 +14,110 @@
 	}
 }
 
+$spacing-unit: 20px;
+$font: 'Graphik-Semibold';
+$font-italic: 'Graphik-SemiboldItalic';
 
-.grid-item {
-	min-height: 500px;
-	position: relative;
-	background-size:25%;
-	margin-bottom:  $gutter;
-    @include transition(all 0.25s ease);
-  	border-radius: 5px;
-    cursor: $wolf;
-    &:hover{
-		box-shadow: 0px 15px 35px 0px rgba(0,0,0,0.50);
-    }
-
-	@include span(6 of 12);
-	&:nth-child(2n+2) {
-		margin-right: 0;
-	}
-
-	.content{
-		position: absolute;
-	    top: 50%;
-	    left: 50%;
-	    transform: translate(-50%, -50%);
-	    text-align: center;
-	    color: white;
-	    h2, h3{
-		    font-weight: bold;
-		    width: 100%;
-	    }
-	    h2{
-	    	font-size: 2em;
-	    }
-	    h3{
-	    	font-size: 1.5em;
-	    }
-	}
+body
+{
+	 
+  font-family: $font;
+  color: white;
+  background-color: pink;
+}
+a
+{
+  color: white; 
+  text-decoration: none;
+  cursor:url(http://icons.iconarchive.com/icons/glyphish/glyphish/32/82-dog-paw-icon.png), auto;
+  //background-color: yellow;
+  &:visited{color: white;}
 }
 
+h1{font-size: 1.3em;}
 
+@mixin tblr()
+{
+  margin: auto;
+  top: 0; bottom: 0;
+  left: 0; right: 0;
+}
 
-// testing moving elements
+#page-wrapper
+{
+  position: relative;
+  width: 100%; max-width: 1600px;
+  margin: auto;
+  //background-color: white;
+}
 
+.padding-style
+{
+  background-color: black;
+  padding: $spacing-unit;
+}
 
-// body {
-//   transform-style: preserve-3d;
-//   transform: perspective(800px);
-// }
+nav
+{
+  position: fixed;
+  background-color: red;
+  top: $spacing-unit*2; left: $spacing-unit*2;
+  box-sizing: border-box;
+  z-index: 999;
+  h1{
+    @extend .padding-style;
+    font-family: $font-italic;
+  }
+}
 
-// .btn {
-//   text-decoration:none;
-//   color: #fff;
-//   background: #AEBEC7;
-//   font-size: 12px;
-//   border-radius: 3px;
-//   padding: 10px;
-//   text-transform: uppercase;
-//   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-//   box-shadow: 0 1px 0 rgba(255,255,255,.5);
-//   position: absolute; left: 50%;
-//   top: 75px; transform: translateX(-50%);
-// }
+ul.buttons
+{
+  position: fixed;
+  top: $spacing-unit*2;
+  right: $spacing-unit*2;
+  z-index: 999;
+  li{
+    @extend h1;
+    @extend .padding-style;
+    display: inline-block;
+    margin-left: $spacing-unit;
+    &:hover{color: black; background-color: white;}
+  }
+}
 
-// .poster {
-//   width: 100%;
-//   height: 500px;
-//   position: absolute;
-//   border-radius: 5px;
-//   box-shadow: 0 45px 100px rgba(0, 0, 0, 0.4);
-//   overflow:hidden;
+ul.grid
+{
+  text-align: center;
+  width: 100%;
+  margin-top: $spacing-unit*5;
+  box-sizing: border-box;
   
-//   .shine {
-//     position: absolute;
-//     top: 0; left: 0; right: 0; bottom: 0;
-//     background: linear-gradient(135deg, rgba(255,255,255,.5) 0%,rgba(255,255,255,0) 60%);
-//     z-index: 100;
-//   }
+  display: inline-flex;
+  justify-content: center;
+  flex-wrap: wrap;
   
-//   div[class*="layer-"] {
-//     position: absolute;
-//     top: -10px; left: -10px;
-//     right: -10px; bottom: -10px;
-//     background-size: 25%;
-//     background-repeat: repeat;
-//     background-position: 0 0;
-//     transition:0.1s;
-//   }
+  li{
+    position: relative;
+    width: 50%;
+    display: inline-flex;
+    justify-content: space-between;
+  }
+  li > .wrapper > a > img{max-width: 100%; min-width: 100%; z-index: 0;}
+  li > .wrapper > img{max-width: 100%; min-width: 100%; z-index: 0;}
+  li:nth-child(even){margin-top: $spacing-unit*3}
   
-//   .layer-1 {
-//      background: url('../images/2.gif');
-//   }
- 
-//   .layer-3 {
-//   	h1{
-// 		position:absolute;
-//     	top: 50%;
-//     	left: 50%;
-//     	transform: translate(-50%, -50%);
-//     	color: $white;
-//     	font-size: 3em;
-//     	font-weight: bold;
-//   	}
-//   }
-// }
+  .wrapper
+  {
+    width: 100%; height: 100%;
+    padding: $spacing-unit*2;
+   }
+  .wrapper p{
+    width: 100%; height: 4em;
+      
+    position: absolute; 
+    @include tblr();
+    color: black;
+    font-size: 2em;
+    z-index: 99;
+  }
+}
