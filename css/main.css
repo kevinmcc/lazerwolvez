@@ -111,7 +111,7 @@ dfn {
  * Address variable `h1` font-size and margin within `section` and `article`
  * contexts in Firefox 4+, Safari, and Chrome.
  */
-h1 {
+h1, ul.buttons li {
   font-size: 2em;
   margin: 0.67em 0; }
 
@@ -358,7 +358,7 @@ th {
 *:after {
   box-sizing: border-box; }
 
-h1, h2, h3, h4, h5, h6 {
+h1, ul.buttons li, h2, h3, h4, h5, h6 {
   margin: 0;
   font-weight: normal; }
 
@@ -423,7 +423,7 @@ html {
 html,
 body {
   height: 100%;
-  background-color: #F20033; }
+  background-color: #FAFAF3; }
 
 body {
   font-size: 1.6rem;
@@ -498,7 +498,7 @@ header {
 .intro {
   height: 50vh;
   position: relative; }
-  .intro h1 {
+  .intro h1, .intro ul.buttons li, ul.buttons .intro li {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -509,33 +509,89 @@ header {
     width: 100%;
     font-weight: bold; }
 
-.grid-item {
-  min-height: 500px;
-  position: relative;
-  background-size: 25%;
-  margin-bottom: 44px;
-  -webkit-transition: all 0.25s ease;
-  -moz-transition: all 0.25s ease;
-  -ms-transition: all 0.25s ease;
-  -o-transition: all 0.25s ease;
-  transition: all 0.25s ease;
-  border-radius: 5px;
-  cursor: url("../images/cursor.cur"), default; }
-  .grid-item:hover {
-    box-shadow: 0px 15px 35px 0px rgba(0, 0, 0, 0.5); }
-  .grid-item:nth-child(2n+2) {
-    margin-right: 0; }
-  .grid-item .content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
+body {
+  font-family: "Graphik-Semibold";
+  color: white;
+  background-color: pink; }
+
+a {
+  color: white;
+  text-decoration: none;
+  cursor: url(http://icons.iconarchive.com/icons/glyphish/glyphish/32/82-dog-paw-icon.png), auto; }
+  a:visited {
     color: white; }
-    .grid-item .content h2, .grid-item .content h3 {
-      font-weight: bold;
-      width: 100%; }
-    .grid-item .content h2 {
-      font-size: 2em; }
-    .grid-item .content h3 {
-      font-size: 1.5em; }
+
+h1, ul.buttons li {
+  font-size: 1.3em; }
+
+#page-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1600px;
+  margin: auto; }
+
+.padding-style, nav h1, ul.buttons li {
+  background-color: black;
+  padding: 20px; }
+
+nav {
+  position: fixed;
+  background-color: red;
+  top: 40px;
+  left: 40px;
+  box-sizing: border-box;
+  z-index: 999; }
+  nav h1, nav ul.buttons li, ul.buttons nav li {
+    font-family: "Graphik-SemiboldItalic"; }
+
+ul.buttons {
+  position: fixed;
+  top: 40px;
+  right: 40px;
+  z-index: 999; }
+  ul.buttons li {
+    display: inline-block;
+    margin-left: 20px; }
+    ul.buttons li:hover {
+      color: black;
+      background-color: white; }
+
+ul.grid {
+  text-align: center;
+  width: 100%;
+  margin-top: 100px;
+  box-sizing: border-box;
+  display: inline-flex;
+  justify-content: center;
+  flex-wrap: wrap; }
+  ul.grid li {
+    position: relative;
+    width: 50%;
+    display: inline-flex;
+    justify-content: space-between; }
+  ul.grid li > .wrapper > a > img {
+    max-width: 100%;
+    min-width: 100%;
+    z-index: 0; }
+  ul.grid li > .wrapper > img {
+    max-width: 100%;
+    min-width: 100%;
+    z-index: 0; }
+  ul.grid li:nth-child(even) {
+    margin-top: 60px; }
+  ul.grid .wrapper {
+    width: 100%;
+    height: 100%;
+    padding: 40px; }
+  ul.grid .wrapper p {
+    width: 100%;
+    height: 4em;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: black;
+    font-size: 2em;
+    z-index: 99; }
