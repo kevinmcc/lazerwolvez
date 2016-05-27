@@ -111,7 +111,7 @@ dfn {
  * Address variable `h1` font-size and margin within `section` and `article`
  * contexts in Firefox 4+, Safari, and Chrome.
  */
-h1, ul.buttons li {
+h1, nav ul li {
   font-size: 2em;
   margin: 0.67em 0; }
 
@@ -358,7 +358,7 @@ th {
 *:after {
   box-sizing: border-box; }
 
-h1, ul.buttons li, h2, h3, h4, h5, h6 {
+h1, nav ul li, h2, h3, h4, h5, h6 {
   margin: 0;
   font-weight: normal; }
 
@@ -495,20 +495,6 @@ header {
   #logo:hover {
     background: #F20033; }
 
-.intro {
-  height: 50vh;
-  position: relative; }
-  .intro h1, .intro ul.buttons li, ul.buttons .intro li {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    font-size: 5em;
-    letter-spacing: 0.02px;
-    width: 100%;
-    font-weight: bold; }
-
 body {
   font-family: "Graphik-Semibold";
   color: white;
@@ -516,43 +502,46 @@ body {
 
 a {
   color: white;
-  text-decoration: none;
-  cursor: url(http://icons.iconarchive.com/icons/glyphish/glyphish/32/82-dog-paw-icon.png), auto; }
+  text-decoration: none; }
   a:visited {
     color: white; }
 
-h1, ul.buttons li {
+h1, nav ul li {
   font-size: 1.3em; }
 
 #page-wrapper {
   position: relative;
   width: 100%;
   max-width: 1600px;
+  overflow-x: hidden;
   margin: auto; }
 
-.padding-style, nav h1, ul.buttons li {
+.padding-style, nav ul li {
   background-color: black;
   padding: 20px; }
 
 nav {
   position: fixed;
-  background-color: red;
-  top: 40px;
-  left: 40px;
+  width: 100%;
+  max-width: 1600px;
+  margin-top: 40px;
+  background-color: blue;
   box-sizing: border-box;
   z-index: 999; }
-  nav h1, nav ul.buttons li, ul.buttons nav li {
-    font-family: "Graphik-SemiboldItalic"; }
 
-ul.buttons {
-  position: fixed;
-  top: 40px;
-  right: 40px;
-  z-index: 999; }
-  ul.buttons li {
-    display: inline-block;
-    margin-left: 20px; }
-    ul.buttons li:hover {
+nav ul {
+  width: 100%;
+  z-index: 999;
+  text-align: right;
+  padding: 0 40px 0 40px; }
+  nav ul li:nth-child(1) {
+    float: left;
+    margin-left: 0; }
+  nav ul li {
+    float: right;
+    margin-left: 40px;
+    display: inline-block; }
+    nav ul li:hover {
       color: black;
       background-color: white; }
 
@@ -568,25 +557,32 @@ ul.grid {
     position: relative;
     width: 50%;
     display: inline-flex;
-    justify-content: space-between; }
-  ul.grid li > .wrapper > a > img {
-    max-width: 100%;
-    min-width: 100%;
-    z-index: 0; }
-  ul.grid li > .wrapper > img {
+    background-color: green; }
+  ul.grid li > .wrapper > div {
     max-width: 100%;
     min-width: 100%;
     z-index: 0; }
   ul.grid li:nth-child(even) {
     margin-top: 60px; }
   ul.grid .wrapper {
+    position: relative;
     width: 100%;
     height: 100%;
     padding: 40px;
-    background-color: grey; }
-  ul.grid .wrapper p {
+    border: 1px solid black;
+    text-align: center;
+    background-color: white; }
+  ul.grid .wolfgif {
+    position: relative;
     width: 100%;
-    height: 4em;
+    height: 23vw;
+    margin: auto;
+    background: url("../images/2.gif") repeat;
+    background-position: center center;
+    background-size: 25%; }
+  ul.grid .wolfgif > p {
+    width: 100%;
+    height: 1.5em;
     position: absolute;
     margin: auto;
     top: 0;
@@ -595,4 +591,5 @@ ul.grid {
     right: 0;
     color: black;
     font-size: 2em;
+    line-height: .75em;
     z-index: 99; }
