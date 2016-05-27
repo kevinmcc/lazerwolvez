@@ -1,2 +1,2 @@
-main.scssc
-_about.scssc
+*.scssc
+!spec/*.scssc
