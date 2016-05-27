@@ -1,0 +1,25 @@
+@mixin placeholder {
+    &.placeholder {
+        @content;
+    }
+    &:-moz-placeholder {
+        @content;
+    }
+    &::-moz-placeholder {
+        @content;
+    }
+    &:-ms-input-placeholder {
+        @content;
+    }
+    &::-webkit-input-placeholder {
+        @content;
+    }
+}
+
+@mixin transition($args...) {
+ -webkit-transition: $args;
+ -moz-transition: $args;
+ -ms-transition: $args;
+ -o-transition: $args;
+ transition: $args;
+}

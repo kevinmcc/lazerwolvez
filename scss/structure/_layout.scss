@@ -1,0 +1,20 @@
+.u {
+    &--main {
+        min-height: 100%;
+        margin-bottom: -$footerH;
+        &:after {
+            content: "";
+            display: block;
+            height: $footerH;
+        }
+    }
+    &--container {
+        max-width: $containerW;
+        margin: 0 auto;
+        padding: 0 $gutter;
+    }
+}
+
+.b{
+    border: 1px solid red;
+}

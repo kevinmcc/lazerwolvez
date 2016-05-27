@@ -1,0 +1,17 @@
+#logo{
+	// font-family: Graphik-BoldItalic;
+	float: left;
+	padding: 0 25px;
+    cursor: $wolf;
+	text-decoration: none;
+	p{
+		font-weight: bold;
+		font-style: italic;
+		font-size: 25px;
+		color: $white;
+		letter-spacing: -0.5px;
+	}
+	&:hover{
+		background: $red;
+	}
+}

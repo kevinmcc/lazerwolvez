@@ -1,0 +1,41 @@
+header {
+    width: 100%;
+	height: $headerH;
+    background: $black;
+    position: relative;
+    z-index: 3;
+}
+
+
+.menuitems{
+	float: right;
+    // cursor: $wolf;
+	li{
+		width: 80px;
+		height: 80px;
+		position: relative;
+		background: $black;
+		a{
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			&.menu{background: url('../images/share.svg') no-repeat center;}
+			&.share{background: url('../images/menu.svg') no-repeat center;}
+			&.item{background: url('../images/share.svg') no-repeat center;}
+		}
+		&.hide{
+			display: none;
+		}
+		&:hover{
+			// background-color: rgba(255,255,255,0.05);
+			background-color: $red;
+		}
+	}
+	&.show{
+		.hide{
+			display: block;
+		}
+	}
+}
+
+
