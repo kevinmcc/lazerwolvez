@@ -1,52 +1,11 @@
-loop = new SeamlessLoop();
-
-var audio  = document.createElement("audio");
-
-if(true) {
-  // loop.addUri("loops/sample.wav", 4890, "sound1");
-}
-
-function soundsLoaded() 
-{
-  // loop.start("sound1");
-};
-
-
-$('.grid-item').hover(
-	function(e){
-		var music = $(this).attr('data-music'),
-			time = $(this).attr('data-time');
-		// loop.addUri("loops/"+music, time, "sound1");
-		console.log('music: '+music+' // time: '+time);
-	 	// loop.start("sound1");
-	 },	
-	 function(e){ console.log('stop'); }
-);
-
-
-// $('.grid-item').mouseleave(function(){
-// 	loop.stop();
-// });
-
-
-loop.callback(soundsLoaded);
-
-$("body").click(function(){
-  loop.stop();
-});
-
-
-// ---
-
 $('#sharemenu').hover( // menu items
     function(e){ $(this).addClass('show'); },
     function(e){ $(this).removeClass('show'); }
 );
 
-// ---
 
 
-//testing 
+//testing 3D Apple motion
 
 
 // var $poster = $('.poster'),
