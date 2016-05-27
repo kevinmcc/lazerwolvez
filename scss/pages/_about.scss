@@ -44,7 +44,7 @@ nav
 	position: fixed;
 	width: 100%; max-width: 1600px;
 	margin-top: $spacing-unit*2;
-	background-color: blue;
+	//background-color: blue;
 	box-sizing: border-box;
 	z-index: 999;
 }
@@ -81,7 +81,6 @@ ul.grid
 		position: relative;
 		width: 50%;
 		display: inline-flex;
-		background-color: green;
 	}
 	li > .wrapper > div{max-width: 100%; min-width: 100%; z-index: 0;}
 	li:nth-child(even){margin-top: $spacing-unit*3}
@@ -117,9 +116,15 @@ ul.grid
 		color: black;
 		font-size: 2em;
 		line-height: .75em;
-		z-index: 99;
+		z-index: 10;
 	}
 
+}
+
+.full
+{
+	position: fixed;
+	z-index: 99;
 }
 
 
