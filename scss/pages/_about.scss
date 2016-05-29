@@ -27,7 +27,7 @@
 		box-shadow: 0px 15px 35px 0px rgba(0,0,0,0.50);
     }
 
-	// @include span(6 of 12);
+	@include span(6 of 12);
 	&:nth-child(2n+2) {
 		margin-right: 0;
 	}

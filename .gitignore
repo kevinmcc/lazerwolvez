@@ -1,0 +1,3 @@
+*.scssc
+scss/**/*.scssc
+main.css

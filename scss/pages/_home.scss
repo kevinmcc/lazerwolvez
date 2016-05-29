@@ -15,3 +15,84 @@
 		background: $red;
 	}
 }
+
+// James 
+
+
+#page-wrapper{
+  position: relative;
+  width: 100%; max-width: 1600px;
+  margin: auto;
+  //background-color: white;
+}
+
+.padding-style{
+  background-color: black;
+  padding: $spacing-unit;
+}
+
+nav{
+  position: fixed;
+  background-color: red;
+  top: $spacing-unit*2; left: $spacing-unit*2;
+  box-sizing: border-box;
+  z-index: 999;
+  h1{
+    @extend .padding-style;
+    font-family: $font-italic;
+    color: $white;
+  }
+}
+
+ul.buttons{
+  position: fixed;
+  top: $spacing-unit*2;
+  right: $spacing-unit*2;
+  z-index: 999;
+  li{
+    @extend h1;
+    @extend .padding-style;
+    display: inline-block;
+    margin-left: $spacing-unit;
+    &:hover{color: black; background-color: white;}
+  }
+}
+
+ul.grid{
+  text-align: center;
+  width: 100%;
+  margin-top: $spacing-unit*5;
+  box-sizing: border-box;
+  
+  display: inline-flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  
+  li{
+    position: relative;
+    width: 50%;
+    display: inline-flex;
+    justify-content: space-between;
+  }
+
+  li > .wrapper > a > img{max-width: 100%; min-width: 100%; z-index: 0;}
+  li > .wrapper > img{max-width: 100%; min-width: 100%; z-index: 0;}
+  li:nth-child(even){margin-top: $spacing-unit*3}
+  
+  .wrapper{
+    width: 100%; height: 100%;
+    padding: $spacing-unit*2;
+    background-color: grey;
+   }
+
+  .wrapper p{
+    width: 100%; 
+    height: 4em;
+    position: absolute; 
+    @include tblr();
+    color: black;
+    font-size: 2em;
+    z-index: 99;
+  }
+
+}
