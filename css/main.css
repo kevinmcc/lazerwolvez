@@ -423,9 +423,7 @@ html {
 html,
 body {
   height: 100%;
-  background-color: #FAFAF3; }
-
-body {
+  background-color: #FAFAF3;
   font-size: 1.6rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
@@ -520,14 +518,9 @@ header {
   -o-transition: all 0.25s ease;
   transition: all 0.25s ease;
   border-radius: 5px;
-  cursor: url("../images/cursor.cur"), default;
-  width: 47.82609%;
-  float: left;
-  margin-right: 4.34783%; }
+  cursor: url("../images/cursor.cur"), default; }
   .grid-item:hover {
     box-shadow: 0px 15px 35px 0px rgba(0, 0, 0, 0.5); }
-  .grid-item:nth-child(2n+2) {
-    margin-right: 0; }
   .grid-item .content {
     position: absolute;
     top: 50%;
