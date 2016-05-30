@@ -7,7 +7,7 @@ $(document).ready(function() {
 
 
 
-    function strTemplate(audio, image,title, copy){
+    function strTemplate(audio, image, title, copy){
     	var str = '<div class="grid-item" data-music="';
     		str+= audio;
     		str+= '" data-time="4890" style="background-image: url(images/';
@@ -47,15 +47,13 @@ $(document).ready(function() {
 		var position = 0;
 
 
-        $('#lazerhome').css('background-image', 'url(images/' + lastArrayItem.image);
+         $('#lazerhome').css('background-image', 'url(images/' + lastArrayItem.image);
         
         $('#lazerhome').click(function(){
         	// add url of object
         	// var number = Math.floor(Math.random() * newArray.length); 
         	
         	history.pushState(null, newArray[position].title, '#'+position);
-
-        	console.log('click');
 
     		// Change the background and music out
     		$('#lazerhome').css('background-image', 'url(images/' + newArray[position].image);
