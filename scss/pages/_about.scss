@@ -6,7 +6,7 @@ body
 {
 	font-family: $font;
 	color: white;
-	background-color: pink;
+	//background-color: pink;
 }
 a
 {
@@ -90,10 +90,10 @@ ul.grid
 		position: relative;
 		width: 100%; height: 100%;
 		padding: $spacing-unit*2;
-		border: 1px solid black;
+		//border: 1px solid black;
 		text-align: center;
 
-		background-color: white;
+		//background-color: white;
 	}
 
 	.wolfgif
@@ -101,10 +101,24 @@ ul.grid
 		position: relative;
 		width: 100%; height: 23vw;
 		margin: auto;
+		background-color: black;
 
 		background: url('../images/2.gif') repeat;
 		background-position: center center;
 		background-size: 25%;
+
+		&:hover{&:after{opacity: 0;}}
+		&:after{
+			content: '';
+			top: 0; bottom: 0;
+			left: 0; right: 0;
+			position: absolute;
+			background-color: black;
+			opacity: .5;
+			&:hover{opacity: 0;}
+		}
+
+		box-shadow: 10px 10px 0px #000;
 	}
 
 	.wolfgif > p{
@@ -113,11 +127,11 @@ ul.grid
 		position: absolute; 
 		@include tblr();
 
-		color: black;
 		font-size: 2em;
 		line-height: .75em;
 		z-index: 10;
 	}
+
 
 }
 

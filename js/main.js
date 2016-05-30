@@ -1,6 +1,6 @@
 //expand wolf on index page
 $('.wolfgif').click(function(){
-	position = $(this).offset();
+	offset = $(this).offset();
 	width = $(this).width();
 	height = $(this).height();
 
@@ -9,8 +9,8 @@ $('.wolfgif').click(function(){
 
 	$('.full').css({"background": bg});
 	$('.full').css({"width": "500px", "height": "500px"});
-	$('.full').css({"top": position.top});
-	$('.full').css({"left": position.left});
+	$('.full').css({"top": offset.top-$(window).scrollTop()});//scrollTop allows negative
+	$('.full').css({"left": offset.left});
 	$('.full').css({"width": width});
 	$('.full').css({"height": height});
 
@@ -21,4 +21,17 @@ $('.wolfgif').click(function(){
 		height: "100vh",
 		backgroundSize: "15%",
 	}, 400);
+});
+
+function randomHue(){
+    return 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+ }
+
+$('a[href="javascript:void(0);"]').hover(function(){
+	//alert("yeah");
+	/*
+	setInterval(function(){
+		$(this).animate({"box-shadow": "10px 10px 0px "+randomHue();},200);
+	}, 250);
+	*/
 });
