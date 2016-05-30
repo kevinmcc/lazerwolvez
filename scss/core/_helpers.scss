@@ -24,8 +24,10 @@
  transition: $args;
 }
 
-@mixin tblr() {
-  margin: auto;
-  top: 0; bottom: 0;
-  left: 0; right: 0;
+@mixin translate($args...) {
+ -webkit-translate: $args;
+ -moz-translate: $args;
+ -ms-translate: $args;
+ -o-translate: $args;
+ translate: $args;
 }

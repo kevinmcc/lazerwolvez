@@ -4,9 +4,17 @@ html {
 
 html,
 body {
-    height: 100%;
-    background-color: $sand;
-    font-size: 1.6rem;
+    background: $purple; 
+    // background-color: $sand;
+    font-size: 1.5em;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+	min-height: 100%;
+}
+
+a{
+	color: #FFEDCF;
+	&:hover{
+		color: #F20033;
+	}
 }

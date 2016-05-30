@@ -4,6 +4,7 @@ $black: #212121;
 $smoke: #F0F0F0;
 $sand: #FAFAF3;
 $red: #F20033;
+$purple: linear-gradient(-134deg, #3023AE 0%, #C86DD7 100%);
 
 // variables
 $containerW: 1200px;
@@ -11,3 +12,7 @@ $footerH: 200px;
 $headerH: 80px;
 $gutter: 44px;
 $wolf: url('../images/cursor.cur'), default;
+
+// Media sizes
+
+$mobile-size: 500px;

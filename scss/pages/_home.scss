@@ -2,7 +2,7 @@
 	// font-family: Graphik-BoldItalic;
 	float: left;
 	padding: 0 25px;
-    cursor: $wolf;
+  cursor: $wolf;
 	text-decoration: none;
 	p{
 		font-weight: bold;
@@ -14,4 +14,8 @@
 	&:hover{
 		background: $red;
 	}
+}
+
+#lazerhome{
+  height: 100%;
 }
