@@ -8,7 +8,9 @@ $(document).ready(function() {
 
 
     function strTemplate(audio, image, title, copy){
-    	var str = '<div class="grid-item" data-music="';
+    	var str = '<a href="index.html#';
+			str+= image.slice(0, -4);
+			str+= '" class="grid-item" data-music="';
     		str+= audio;
     		str+= '" data-time="4890" style="background-image: url(images/';
     		str+= image;
@@ -16,7 +18,7 @@ $(document).ready(function() {
     		str+= title;
     		str+= '</h2><h3>';
     		str+= copy;
-    		str+= '</h3></div></div>';
+    		str+= '</h3></div></a>';
     	return str;
     }
 
@@ -30,7 +32,7 @@ $(document).ready(function() {
 			var title = lazerArray[i].title;
 			var copy = lazerArray[i].copy;
 
-			html += strTemplate(audio, image,title, copy);
+			html += strTemplate(audio, image, title, copy);
 		}
 
 		$('#grid-container').html(html);
@@ -47,7 +49,16 @@ $(document).ready(function() {
 		var position = 0;
 
 
-         $('#lazerhome').css('background-image', 'url(images/' + lastArrayItem.image);
+
+        if(window.location.hash) {
+		  // # exists
+			$('#lazerhome').css('background-image', 'url(images/' + window.location.hash.slice(1) + '.gif');
+		  console.log(window.location.hash);
+		} else {
+			// if there is no # condition in the url bar
+			$('#lazerhome').css('background-image', 'url(images/' + lastArrayItem.image);
+		}
+
         
         $('#lazerhome').click(function(){
         	// add url of object
