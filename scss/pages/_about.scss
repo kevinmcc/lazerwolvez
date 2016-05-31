@@ -6,7 +6,9 @@ body
 {
 	font-family: $font;
 	color: white;
-	//background-color: pink;
+	background-color: #fff;
+	//background: url('http://media2.giphy.com/media/3osxYyFPDYvTCV4iIw/giphy.gif');
+	//background-size: cover;
 }
 a
 {
@@ -103,11 +105,15 @@ ul.grid
 		margin: auto;
 		background-color: black;
 
-		background: url('../images/2.gif') repeat;
+		background: url('../images/1.gif') repeat;
 		background-position: center center;
 		background-size: 25%;
 
-		&:hover{&:after{opacity: 0;}}
+		&:hover{
+			p{display: none;}
+			&:after{opacity: 0;}
+		}
+
 		&:after{
 			content: '';
 			top: 0; bottom: 0;

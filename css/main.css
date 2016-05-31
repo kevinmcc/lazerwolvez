@@ -492,7 +492,8 @@ header {
 
 body {
   font-family: "Graphik-Semibold";
-  color: white; }
+  color: white;
+  background-color: #fff; }
 
 a {
   color: white;
@@ -568,10 +569,12 @@ ul.grid {
     height: 23vw;
     margin: auto;
     background-color: black;
-    background: url("../images/2.gif") repeat;
+    background: url("../images/1.gif") repeat;
     background-position: center center;
     background-size: 25%;
     box-shadow: 10px 10px 0px #000; }
+    ul.grid .wolfgif:hover p {
+      display: none; }
     ul.grid .wolfgif:hover:after {
       opacity: 0; }
     ul.grid .wolfgif:after {

@@ -27,11 +27,11 @@ function randomHue(){
     return 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
  }
 
-$('a[href="javascript:void(0);"]').hover(function(){
-	//alert("yeah");
-	/*
-	setInterval(function(){
-		$(this).animate({"box-shadow": "10px 10px 0px "+randomHue();},200);
-	}, 250);
-	*/
-});
+$('.wolfgif').hover(
+	function(){
+		//something
+},
+	function(){
+		//something
+	}
+);
