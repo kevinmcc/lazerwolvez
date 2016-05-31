@@ -63,8 +63,9 @@ $(document).ready(function() {
         $('#lazerhome').click(function(){
         	// add url of object
         	// var number = Math.floor(Math.random() * newArray.length); 
-        	
-        	history.pushState(null, newArray[position].title, '#'+position);
+        	var cleanURL = newArray[position].image;
+
+        	history.pushState(null, newArray[position].title, '#'+ cleanURL.slice(0,-4));
 
     		// Change the background and music out
     		$('#lazerhome').css('background-image', 'url(images/' + newArray[position].image);
