@@ -1,14 +1,14 @@
 $spacing-unit: 20px;
-$font: 'Graphik-Semibold';
-$font-italic: 'Graphik-SemiboldItalic';
+$font: 'GothamCondensed-Bold';
+$font-italic: 'GothamCondensed-BoldItalic';
 
 body
 {
 	font-family: $font;
 	color: white;
 	background-color: #fff;
-	//background: url('http://media2.giphy.com/media/3osxYyFPDYvTCV4iIw/giphy.gif');
-	//background-size: cover;
+	// background: url('http://66.media.tumblr.com/250006a0af2841ea3ce8c57f5cd2bdc0/tumblr_nukvlurinf1toe0eco1_400.gif');
+	background-size: 100%;
 }
 a
 {
@@ -18,7 +18,7 @@ a
   &:visited{color: white;}
 }
 
-h1{font-size: 1.3em;}
+h1{font-size: 1.5em;}
 
 @mixin tblr()
 {
@@ -30,7 +30,7 @@ h1{font-size: 1.3em;}
 #page-wrapper
 {
 	position: relative;
-	width: 100%; max-width: 1600px;
+	width: 100%; max-width: 2000px;
 	overflow-x: hidden;
 	margin: auto;
 }
@@ -44,9 +44,11 @@ h1{font-size: 1.3em;}
 nav
 {
 	position: fixed;
-	width: 100%; max-width: 1600px;
+	width: 100%; max-width: 2000px;
 	margin-top: $spacing-unit*2;
-	//background-color: blue;
+	
+	font-family: $font-italic;
+
 	box-sizing: border-box;
 	z-index: 999;
 }
@@ -95,21 +97,24 @@ ul.grid
 		//border: 1px solid black;
 		text-align: center;
 
-		//background-color: white;
+		//background-color: grey;
 	}
 
 	.wolfgif
 	{
 		position: relative;
 		width: 100%; height: 23vw;
-		margin: auto;
+		margin: auto; padding-top: 20px;
 		background-color: black;
 
 		background: url('../images/1.gif') repeat;
 		background-position: center center;
 		background-size: 25%;
+		transition: all 0.1s ease; ;
 
 		&:hover{
+			transform: translateY(-1*$spacing-unit);
+			box-shadow: 0px 8px 30px #aaa;
 			p{display: none;}
 			&:after{opacity: 0;}
 		}
@@ -124,7 +129,6 @@ ul.grid
 			&:hover{opacity: 0;}
 		}
 
-		box-shadow: 10px 10px 0px #000;
 	}
 
 	.wolfgif > p{
@@ -138,7 +142,6 @@ ul.grid
 		z-index: 10;
 	}
 
-
 }
 
 .full
@@ -146,8 +149,6 @@ ul.grid
 	position: fixed;
 	z-index: 99;
 }
-
-
 
 
 

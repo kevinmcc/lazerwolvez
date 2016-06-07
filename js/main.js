@@ -1,3 +1,4 @@
+$(document).ready(function(){
 //expand wolf on index page
 $('.wolfgif').click(function(){
 	offset = $(this).offset();
@@ -5,7 +6,7 @@ $('.wolfgif').click(function(){
 	height = $(this).height();
 
 	bg = $(this).css('background');
-	$('body').prepend('<div class="full"></div>');
+	$('body').prepend('<a href="#"><div class="full"></div></a>');
 
 	$('.full').css({"background": bg});
 	$('.full').css({"width": "500px", "height": "500px"});
@@ -21,17 +22,27 @@ $('.wolfgif').click(function(){
 		height: "100vh",
 		backgroundSize: "15%",
 	}, 400);
+
 });
 
-function randomHue(){
-    return 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
- }
+num = 1;
+$('body').on('click','.full', function(){
+	num = (num%6)+1;
+	//$('.full').css({"width": "100px"})
+	$('.full').css({"background": "url('./images/"+num+".gif')"})
+});
 
-$('.wolfgif').hover(
-	function(){
-		//something
-},
-	function(){
-		//something
-	}
-);
+$('a[href="#home"]').click(function(){
+	target = $('.grid').find('.wolfgif');
+
+	$('.full').animate({
+		left: target.offset().left,
+		top: target.offset().top-$(window).scrollTop(),
+		width: target.width(),
+		height: target.height(),
+	}, 400,function(){
+		$('.full').remove();
+	});
+});
+
+});
