@@ -24,57 +24,80 @@
   			</a>
   		</ul>
   	</nav>
+    <div class="about">
+      <h1>HMM... TELL ME MORE ABOUT THIS 'LAZY WOLF'</h1>
+    </div>
+    <ul class="grid">
+      <li>
+       <div class="wrapper">
+        <div class="wolftitle">
+          <a href="javascript:void(0);">
+            This Here Is A Fake<br>
+            <p>Purple Rain by Prince</p>
+          </a>
+        </div>
+        <a href="javascript:void(0);">
+          <div class="wolfgif">
+          </div>
+        </a>
+      </a>
+    </li>
+    <li>
+       <div class="wrapper">
+        <div class="wolftitle">
+          <a href="javascript:void(0);">
+            Short One<br>
+            <p>Purple Rain by Prince</p>
+          </a>
+        </div>
+        <a href="javascript:void(0);">
+          <div class="wolfgif">
+          </div>
+        </a>
+      </a>
+    </li>
 
-  	<ul class="grid">
-  		<li>
-  			<div class="wrapper">
-  				<a href="javascript:void(0);">
-  					<div class="wolfgif">
-  						<p>TRIPPY WOLF MAN<br/>
-  							<span style="font-size: .5em;">Purple Rain by Prince</span>
-  						</p>
-  					</div>
-  				</a>
-  			</div>
-  		</li>
-  		<li>
-  			<div class="wrapper">
-  				<a href="javascript:void(0);">
-  					<div class="wolfgif">
-  						<p>THIS THA TITLE<br/>
-  							<span style="font-size: .5em;">And this the subtitle</span>
-  						</p>
-  					</div>
-  				</a>
-  			</div>
-  		</li>
-  		<li>
-  			<div class="wrapper">
-  				<a href="javascript:void(0);">
-  					<div class="wolfgif">
-  						<p>THIS THE TITLE<br/>
-  							<span style="font-size: .5em;">and some sub</span>
-  						</p>
-  					</div>
-  				</a>
-  			</div>
-  		</li>
-  		<li>
-  			<div class="wrapper">
-  				<a href="javascript:void(0);">
-  					<div class="wolfgif">
-  						<p>THIS THA TITLE<br/>
-  							<span style="font-size: .5em;">and some sub</span>
-  						</p>
-  					</div>
-  				</a>
-  			</div>
-  		</li>
-  	</ul>
-  </div>
+    <li>
+       <div class="wrapper">
+        <div class="wolftitle">
+          <a href="javascript:void(0);">
+            This Here Is A Fake<br>
+            <p>Purple Rain by Prince</p>
+          </a>
+        </div>
+        <a href="javascript:void(0);">
+          <div class="wolfgif">
+          </div>
+        </a>
+      </a>
+    </li>
+</ul>
+</div>
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
-  <script src="js/main.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+<script src="js/main.js"></script>
+<script type="text/javascript">
+  var idleTime = 0;
+  $(document).ready(function () {
+    //Increment the idle time counter every minute.
+    var idleInterval = setInterval(timerIncrement, 30000); // 30sec
+
+    //Zero the idle timer on mouse movement.
+    $(this).mousemove(function (e) {
+      idleTime = 0;
+    });
+    $(this).keypress(function (e) {
+      idleTime = 0;
+    });
+  });
+
+  function timerIncrement() {
+    idleTime = idleTime + 1;
+    if (idleTime > 1) { // 20 minutes
+      window.location.reload();
+    }
+  }
+</script> 
 </body>
 </html>
