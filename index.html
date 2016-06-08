@@ -77,27 +77,5 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 <script src="js/main.js"></script>
-<script type="text/javascript">
-  var idleTime = 0;
-  $(document).ready(function () {
-    //Increment the idle time counter every minute.
-    var idleInterval = setInterval(timerIncrement, 30000); // 30sec
-
-    //Zero the idle timer on mouse movement.
-    $(this).mousemove(function (e) {
-      idleTime = 0;
-    });
-    $(this).keypress(function (e) {
-      idleTime = 0;
-    });
-  });
-
-  function timerIncrement() {
-    idleTime = idleTime + 1;
-    if (idleTime > 1) { // 20 minutes
-      window.location.reload();
-    }
-  }
-</script> 
 </body>
 </html>

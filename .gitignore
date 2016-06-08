@@ -1,2 +1,3 @@
 *.scssc
 !spec/*.scssc
+/old site/
