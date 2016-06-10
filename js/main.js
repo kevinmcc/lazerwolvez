@@ -1,11 +1,14 @@
 $(document).ready(function(){
 //expand wolf on index page
-$('.wolfgif').click(function(){
-	offset = $(this).offset();
-	width = $(this).width();
-	height = $(this).height();
+$('a[href="javascript:openwolf();"').click(function(){
+	wolf = $(this).parent().find('.wolfgif');
+	alert(wolf.prop('tagName'));
 
-	bg = $(this).css('background');
+	offset = $(wolf).offset();
+	width = $(wolf).width();
+	height = $(wolf).height();
+
+	bg = $(wolf).css('background');
 	$('body').prepend('<a href="#"><div class="full"></div></a>');
 
 	$('.full').css({"background": bg});

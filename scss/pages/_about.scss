@@ -1,9 +1,11 @@
 $spacing-unit: 20px;
 $font: 'Circular-Bold';
 $font-italic: 'Circular-BoldItalic';
+$wolfgif-width: 70%;
 $site-max-width: 1600px;
 
-$break1: 1400px;
+$screen-break1: 1400px;
+$screen-break2: 1000px;
 $mobile: 600px;
 
 body
@@ -11,7 +13,9 @@ body
 	font-family: $font;
 	color: white;
 	background-color: #666;
-	background-size: 100%;
+	background: url('https://media.giphy.com/media/d4bnr3HMZ00Zelwc/giphy.gif');
+	background-size: 100% 100%;
+	background-attachment: fixed;
 }
 a
 {
@@ -22,26 +26,12 @@ a
 
 h1{font-size: 1.5em;}
 
-@mixin tblr()
-{
-	margin: auto;
-	top: 0; bottom: 0;
-	left: 0; right: 0;
-}
-
 #page-wrapper
 {
 	position: relative;
 	width: 100%; max-width: $site-max-width;
 	overflow-x: hidden;
 	margin: auto;
-}
-
-.padding-style
-{
-	background-color: black;
-	padding: $spacing-unit*.5;
-	padding-top: $spacing-unit*.4; padding-bottom: $spacing-unit*.4;
 }
 
 nav
@@ -65,10 +55,8 @@ nav ul
 	li:nth-child(1){float: left; margin-left: 0;}
 	li{
 		@extend h1;
-		@extend .padding-style;
 		float: right;
 		margin-left: $spacing-unit*2;
-		&:hover{color: black; background-color: white;}
 	}
 }
 
@@ -78,13 +66,12 @@ nav ul
 	margin-top: $spacing-unit*8;
 	padding: $spacing-unit*2;
 
-	color: black;
+	color: white;
 	text-align: center;
 }
 
 ul.grid
 {
-	text-align: center;
 	width: 100%;
 	margin-top: $spacing-unit*2;
 	box-sizing: border-box;
@@ -110,10 +97,9 @@ ul.grid
 	.wolfgif
 	{
 		position: relative;
-		width: 60%; height: 30vw;
+		width: $wolfgif-width; height: 30vw;
 		max-height: 600px; min-height: 400px;
-		margin-right: 40%;
-		background-color: black;
+		margin-right: 100-$wolfgif-width;
 		@media screen and (max-width: $mobile)
 		{
 			width: 100%; height: 20vw;
@@ -124,20 +110,24 @@ ul.grid
 		background-size: 25%;
 		transition: all 0.2s ease;
 
-		&:hover{
-			transform: translateY(-.5*$spacing-unit);
-			box-shadow: 0px 8px 30px rgba(0,0,0,.2);
-			&:after{opacity: 0;}
+		//HOVER EFFECT
+		@media screen and (min-width: $mobile)
+		{
+			&:hover
+			{
+				transform: translateY(-.5*$spacing-unit);
+				box-shadow: 0px 8px 30px rgba(0,0,0,.2);
+			}
 		}
 
+		//DARKEN IMAGE
 		&:after{
 			content: '';
 			top: 0; bottom: 0;
 			left: 0; right: 0;
 			position: absolute;
 			background-color: black;
-			opacity: .5;
-			&:hover{opacity: 0;}
+			opacity: .3;
 		}
 	}
 
@@ -151,38 +141,70 @@ ul.grid
 		padding: $spacing-unit;
 		margin-bottom: $spacing-unit*4;
 
-		display: flex;
-		align-items: flex-end;
+		transition: all 0.2s ease;
 
-		font-size: 7em;
-		line-height: .8em;
 		text-align: left;
 
-		transition: all 0.2s ease;
+		h1
+		{
+			font-size: 7.5em;
+			line-height: .8em;
+			@media screen and (max-width: $screen-break1)
+			{
+				font-size: 6em;
+			}
+			@media screen and (max-width: $screen-break2)
+			{
+				font-size: 5em;
+			}
+		}
 		p
 		{
 			opacity: 0;
-			font-size: .4em;
+			font-size: 2em;
 			line-height: .2em;
 			transition: all 0.2s ease;
 		}
-		&:hover{
-			transform: translateY(-.5*$spacing-unit);
-			text-shadow: 0px 8px 30px rgba(0,0,0,.2);
-			p
+		h1,p
+		{
+			@media screen and (max-width: $mobile)
 			{
-				transform: translateY(-.5*$spacing-unit);
-				opacity: 1;
+				text-align: center !important;
 			}
+		}
+		//HOVER EFFECT
+		@media screen and (min-width: $mobile)
+		{
+			&:hover{
+				transform: translateY(-.5*$spacing-unit);
+				text-shadow: 0px 8px 30px rgba(0,0,0,.2);
+				p
+				{
+					transform: translateY(-.5*$spacing-unit);
+					opacity: 1;
+				}
+			}
+		}
+		@media screen and (max-width: $mobile)
+		{
+			width: 100%;
+			text-align: center;
+			top: 0; bottom: 0;
+			margin: auto;
+			padding: $spacing-unit*2;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			h1,p{text-align: center;}
+			p{opacity: 1;}
 		}
 	}
 
-	
 	li:nth-child(even) > .wrapper
 	{
 		.wolfgif
 		{
-			margin-left: 40%; 
+			margin-left: 100-$wolfgif-width; 
 			@media screen and (max-width: $mobile)
 			{
 				margin-left: 0;
@@ -192,11 +214,14 @@ ul.grid
 		{
 			right: auto;
 			left: 0;
+			h1, p {	text-align: right !important;}
 
-			text-align: right;
+			@media screen and (max-width: $mobile)
+			{
+				h1, p {	text-align: center !important;}
+			}
 		}
 	}
-
 }
 
 .full
@@ -204,6 +229,3 @@ ul.grid
 	position: fixed;
 	z-index: 99;
 }
-
-
-
