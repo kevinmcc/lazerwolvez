@@ -94,11 +94,14 @@ ul.grid{
 		// background-color: green;
 	}
 
-	img{
+	.wolf-parent{
+		display: block;
+	}
+
+	a img{
 		max-width: 600px; max-height: 600px;
 		order: 0;
 		opacity: .6;
-		transform-origin: 50% 50%;
 	}
 
 	h1{
@@ -123,7 +126,7 @@ ul.grid{
 			float: right;
 		}
 
-		img{
+		a ,img{
 			order: 10;
 		}
 		h1{

@@ -556,12 +556,13 @@ ul.grid {
     display: inline-flex;
     align-items: flex-end;
     perspective: 500px; }
-  ul.grid img {
+  ul.grid .wolf-parent {
+    display: block; }
+  ul.grid a img {
     max-width: 600px;
     max-height: 600px;
     order: 0;
-    opacity: .6;
-    transform-origin: 50% 50%; }
+    opacity: .6; }
   ul.grid h1, nav ul.grid li {
     text-align: left;
     font-size: 6em;
@@ -577,7 +578,7 @@ ul.grid {
     margin-left: 10vw; }
     ul.grid li:nth-child(even) .wrapper {
       float: right; }
-    ul.grid li:nth-child(even) img {
+    ul.grid li:nth-child(even) a, ul.grid li:nth-child(even) img {
       order: 10; }
     ul.grid li:nth-child(even) h1, nav ul.grid li:nth-child(even) li {
       text-align: right;

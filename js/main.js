@@ -41,45 +41,48 @@ $(document).ready(function(){
 	});
 
 
-	$('img.wolfpreview').hover(function(){
-		var i = $('img.wolfpreview').index(this);
+	$('.wolf-parent').hover(function(){
+		var child = $(this).find('img.wolfpreview');
+		var i = $('.wolf-parent').index(this);
 		wolves[i].isActive = true ;
 		AF.start();
 	}, function(){
-		var i = $('img.wolfpreview').index(this);
+		var i = $('.wolf-parent').index(this);
 		wolves[i].isActive = false ;
+		// AF.stop();
 	});
 
 
 	function wolfHover(){
+		notActive = 0;
 		for(var i = 0; i< wolves.length; i++){
 			var wolf = wolves[i];
-			//is not active but has rotation values left
-			if((!wolf.isActive) && (wolf.rotationY != 0 || wolf.rotationX != 0)){
+			//is NOT ACTIVE but has rotation values left
+			if((!wolf.isActive) && (Math.abs(wolf.rotationY) > .5 || Math.abs(wolf.rotationX) > .5)){
 
 				wolf.rotationX += (0-wolf.rotationX)/10;//set to 0 in 10 frames
 				wolf.rotationY += (0-wolf.rotationY)/10;//set to 0 in 10 frames
 
-				//wolf.el.style.transform = 'rotateX('+wolf.rotationX+'deg) rotateY('+wolf.rotationY+'deg)';
+				wolf.el.style.transform = 'rotateX('+wolf.rotationX+'deg) rotateY('+wolf.rotationY+'deg)';
 			}
-			// not active
-			else if( !wolf.isActive ) continue 
-			// it is active and should be rotating with mouse
-		else{
-			coordY = (((wolf.top-$(document).scrollTop()-mouse.y)/wolf.height)*2)+1;
-			coordX = ((lastMouse.x-wolf.left)/wolf.width*2)-1;
-			maxDeg = 70;
+			// NOT ACTIVE
+			else if( !wolf.isActive ) {
+				notActive++;
+				//if no wolves are active, stop animation frame
+				if(notActive == wolves.length){AF.stop();}
+			}
+			//IS ACTIVE
+			else{
+				coordY = (((wolf.top-$(document).scrollTop()-mouse.y)/wolf.height)*2)+1;
+				coordX = ((lastMouse.x-wolf.left)/wolf.width*2)-1;
+				maxDeg = 15;
 
-			//switched X and Y on purpose
-			wolf.rotationY = ((coordX*maxDeg)-wolf.rotationX)/10;
-			wolf.rotationX = ((coordY*maxDeg)-wolf.rotationY)/10;
+				//switched X and Y on purpose
+				wolf.rotationY += ((coordX*maxDeg)-wolf.rotationY)/10;
+				wolf.rotationX += ((coordY*maxDeg)-wolf.rotationX)/10;
 
-			console.log('x:'+coordX);
-			wolf.el.style.transform = 'rotateX('+wolf.rotationX+'deg) rotateY('+wolf.rotationY+'deg)';
-		}
-		if(!wolf.isActive){
-			AF.stop();
-		}
+				wolf.el.style.transform = 'rotateX('+wolf.rotationX+'deg) rotateY('+wolf.rotationY+'deg)';
+			}
 	}
 
 }
