@@ -1,46 +1,67 @@
 $(document).ready(function(){
 
 	var wolves = [] ;
-
 	var mouse = {
 		x:0,
 		y:0
 	}
-
 	var lastMouse = {
 		x:0,
 		y:0
 	}
-	var on  = false;
-	var target;
 
+	//EVENTS
+	//mouse move
 	window.addEventListener('mousemove', function(e){
 		mouse.x = e.clientX;
 		mouse.y = e.clientY;
-		lastMouse.x += (mouse.x - lastMouse.x)/10;
-		lastMouse.y += (mouse.y - lastMouse.y)/10;
+		// lastMouse.x += (mouse.x - lastMouse.x)/10;
+		// lastMouse.y += (mouse.y - lastMouse.y)/10;
 	});
 
+	$(window).on('touchmove', function(e){
+		// e.preventDefault();
+		var x = e.originalEvent.changedTouches[0].clientX;
+		var y = e.originalEvent.changedTouches[0].clientY;
 
-	$('img.wolfpreview').each(function(){
-		var el = $(this);
-		var offset = el.offset();
-		var width = el.width();
-		var height = el.height();
-		var obj = {
-			el: this,
-			top: offset.top,
-			left: offset.left,
-			width:width,
-			height:height,
-			rotationX:0,
-			rotationY:0,
-			isActive: false
-		}
-		wolves.push(obj);
+
+		mouse.x = x;
+		mouse.y = y;
 	});
 
+	//window resize
+	window.onresize = function() {
+		wolves = [];//reset positions & sizes on resize
+		getWolfPreviews();
+	};
 
+
+	//INIT
+	getWolfPreviews();
+
+
+	//WOLF PREVIEWS
+	function getWolfPreviews()
+	{
+		$('img.wolfpreview').each(function(){
+			var el = $(this);
+			var offset = el.offset();
+			var width = el.width();
+			var height = el.height();
+			var obj = {
+				el: this,
+				top: offset.top,
+				left: offset.left,
+				width:width,
+				height:height,
+				rotationX:0,
+				rotationY:0,
+				isActive: false
+			}
+			wolves.push(obj);
+		});
+	}
+	
 	$('.wolf-parent').hover(function(){
 		var child = $(this).find('img.wolfpreview');
 		var i = $('.wolf-parent').index(this);
@@ -49,9 +70,7 @@ $(document).ready(function(){
 	}, function(){
 		var i = $('.wolf-parent').index(this);
 		wolves[i].isActive = false ;
-		// AF.stop();
 	});
-
 
 	function wolfHover(){
 		notActive = 0;
@@ -74,8 +93,8 @@ $(document).ready(function(){
 			//IS ACTIVE
 			else{
 				coordY = (((wolf.top-$(document).scrollTop()-mouse.y)/wolf.height)*2)+1;
-				coordX = ((lastMouse.x-wolf.left)/wolf.width*2)-1;
-				maxDeg = 15;
+				coordX = ((mouse.x-wolf.left)/wolf.width*2)-1;
+				maxDeg = 25;
 
 				//switched X and Y on purpose
 				wolf.rotationY += ((coordX*maxDeg)-wolf.rotationY)/10;
@@ -83,17 +102,15 @@ $(document).ready(function(){
 
 				wolf.el.style.transform = 'rotateX('+wolf.rotationX+'deg) rotateY('+wolf.rotationY+'deg)';
 			}
+		}
+
 	}
 
-}
+	AF.add('wolfHover', function(){
+		wolfHover();
+	});	
 
-AF.add('wolfHover', function(){
-	wolfHover();
-});	
-
-});
-
-
+});//end document ready
 
 
 

@@ -551,31 +551,63 @@ ul.grid {
     width: 80vw;
     margin-left: 10vw;
     margin-bottom: 80px; }
+    @media screen and (max-width: 700px) {
+      ul.grid li {
+        width: 100vw;
+        margin-left: 0;
+        padding: 20px; } }
   ul.grid .wrapper {
-    float: left;
     display: inline-flex;
     align-items: flex-end;
-    perspective: 500px; }
+    perspective: 500px;
+    border: 1px solid red; }
+    @media screen and (max-width: 700px) {
+      ul.grid .wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: wrap; } }
   ul.grid .wolf-parent {
     display: block; }
   ul.grid a img {
     max-width: 600px;
     max-height: 600px;
     order: 0;
-    opacity: .6; }
+    opacity: .6;
+    transition: all 250ms; }
+    @media screen and (max-width: 1000px) {
+      ul.grid a img {
+        max-width: 100%;
+        height: auto; } }
+    @media screen and (max-width: 700px) {
+      ul.grid a img {
+        order: 10; } }
   ul.grid h1, nav ul.grid li {
     text-align: left;
     font-size: 6em;
     line-height: 1em;
     transform: translateX(-40px);
     order: 5; }
+    @media screen and (max-width: 1000px) {
+      ul.grid h1, nav ul.grid li {
+        font-size: 5em;
+        transform: translateX(-80px); } }
+    @media screen and (max-width: 700px) {
+      ul.grid h1, nav ul.grid li {
+        order: 10;
+        text-align: center;
+        transform: none; } }
   ul.grid .music {
     font-size: .3em;
-    line-height: 2em;
+    line-height: 1.5em;
     padding-bottom: 20px;
     order: 5; }
   ul.grid li:nth-child(even) {
     margin-left: 10vw; }
+    @media screen and (max-width: 700px) {
+      ul.grid li:nth-child(even) {
+        margin-left: 0; } }
     ul.grid li:nth-child(even) .wrapper {
       float: right; }
     ul.grid li:nth-child(even) a, ul.grid li:nth-child(even) img {
@@ -583,3 +615,10 @@ ul.grid {
     ul.grid li:nth-child(even) h1, nav ul.grid li:nth-child(even) li {
       text-align: right;
       transform: translateX(40px); }
+      @media screen and (max-width: 1000px) {
+        ul.grid li:nth-child(even) h1, nav ul.grid li:nth-child(even) li {
+          transform: translateX(80px); } }
+      @media screen and (max-width: 700px) {
+        ul.grid li:nth-child(even) h1, nav ul.grid li:nth-child(even) li {
+          text-align: center;
+          transform: none; } }

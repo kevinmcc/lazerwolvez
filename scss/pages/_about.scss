@@ -4,27 +4,20 @@ $font-italic: 'Circular-BoldItalic';
 $wolfgif-width: 70%;
 $site-max-width: 2600px;
 
-$screen-break1: 1400px;
-$screen-break2: 1000px;
-$mobile: 600px;
+$screen-break1: 'screen and (max-width: 1000px)';
+$screen-mobile: 'screen and (max-width: 700px)';
+
 
 body{
 	font-family: $font;
 	color: black;
 	background-color: #eee;
-	//background: url('http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/grid.png');
 	background-attachment: fixed;
 }
 a{
 	color: black; 
 	text-decoration: none;
 	&:visited{color: black;}
-}
-
-@mixin center(){
-	position: absolute;
-	top:50%;	 left:50%;
-	-webkit-transform: translate(-50%, -50%);
 }
 
 h1{font-size: 1em;}
@@ -77,21 +70,31 @@ ul.grid{
 
 	display: inline-flex;
 	flex-wrap: wrap;
-	// border: 1px solid grey;
 
 	li{
 		width: 80vw;
 		margin-left: 10vw;
 		margin-bottom: $spacing-unit*4;
-		// border: 1px solid red;
+		@media #{$screen-mobile}{
+			width: 100vw;
+			margin-left: 0;
+			padding: $spacing-unit;
+		}
 	}
 
 	.wrapper{
-		float: left;
 		display: inline-flex;
 		align-items: flex-end;
-		perspective: 500px;
-		// background-color: green;
+		perspective: 500px;//IMPORTANT FOR ROTATION
+		border: 1px solid red;
+		@media #{$screen-mobile}{
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			flex-wrap: wrap;
+		}
+
 	}
 
 	.wolf-parent{
@@ -102,6 +105,14 @@ ul.grid{
 		max-width: 600px; max-height: 600px;
 		order: 0;
 		opacity: .6;
+		transition: all 250ms;
+		// box-shadow: 0px 15px 20px rgba(0,0,0,.15);
+		@media #{$screen-break1}{
+			max-width: 100%; height: auto;
+		}
+		@media #{$screen-mobile}{
+			order: 10;
+		}
 	}
 
 	h1{
@@ -111,27 +122,47 @@ ul.grid{
 
 		transform: translateX(-$spacing-unit*2);
 		order: 5;
+		// background-color: green;
+		@media #{$screen-break1}{
+			font-size: 5em;
+			transform: translateX(-$spacing-unit*4);
+		}
+		@media #{$screen-mobile}{
+			order: 10;
+			text-align: center;
+			transform: none;
+		}
 	}
 	.music{
 		font-size: .3em;
-		line-height: 2em;
+		line-height: 1.5em;
 		padding-bottom: $spacing-unit;
 		order: 5;
 	}
 
 	li:nth-child(even){
 		margin-left: 10vw;
+		@media #{$screen-mobile}{
+			margin-left: 0;
+		}
 
 		.wrapper{
 			float: right;
 		}
 
-		a ,img{
+		a, img{
 			order: 10;
 		}
 		h1{
 			text-align: right;
 			transform: translateX($spacing-unit*2);
+			@media #{$screen-break1}{
+				transform: translateX($spacing-unit*4);
+			}
+			@media #{$screen-mobile}{
+				text-align: center;
+				transform: none;
+			}
 		}
 	}
 
