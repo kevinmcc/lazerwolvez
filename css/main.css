@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 /**
  * 1. Set default font family to sans-serif.
@@ -493,7 +494,6 @@ header {
 body {
   font-family: "Circular-Bold";
   color: black;
-  background-color: #eee;
   background-attachment: fixed; }
 
 a {
@@ -501,6 +501,10 @@ a {
   text-decoration: none; }
   a:visited {
     color: black; }
+
+canvas {
+  position: fixed;
+  z-index: 00; }
 
 h1, nav ul li {
   font-size: 1em; }
@@ -510,7 +514,8 @@ h1, nav ul li {
   width: 100%;
   max-width: 2600px;
   overflow-x: hidden;
-  margin: auto; }
+  margin: auto;
+  background: transparent; }
 
 nav {
   position: fixed;
@@ -540,6 +545,12 @@ nav ul {
   padding: 40px; }
   .about h2 {
     font-size: 5em; }
+    @media screen and (max-width: 700px) {
+      .about h2 {
+        font-size: 3em; } }
+  @media screen and (max-width: 700px) {
+    .about {
+      padding: 20px; } }
 
 ul.grid {
   width: 100%;
@@ -559,8 +570,7 @@ ul.grid {
   ul.grid .wrapper {
     display: inline-flex;
     align-items: flex-end;
-    perspective: 500px;
-    border: 1px solid red; }
+    perspective: 500px; }
     @media screen and (max-width: 700px) {
       ul.grid .wrapper {
         width: 100%;
@@ -573,8 +583,6 @@ ul.grid {
   ul.grid a img {
     max-width: 600px;
     max-height: 600px;
-    order: 0;
-    opacity: .6;
     transition: all 250ms; }
     @media screen and (max-width: 1000px) {
       ul.grid a img {
@@ -583,11 +591,20 @@ ul.grid {
     @media screen and (max-width: 700px) {
       ul.grid a img {
         order: 10; } }
+    ul.grid a img:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: green;
+      border: 1px solid red; }
   ul.grid h1, nav ul.grid li {
     text-align: left;
     font-size: 6em;
     line-height: 1em;
-    transform: translateX(-40px);
+    transform: translateX(-40px) scale(1);
     order: 5; }
     @media screen and (max-width: 1000px) {
       ul.grid h1, nav ul.grid li {
@@ -603,13 +620,20 @@ ul.grid {
     line-height: 1.5em;
     padding-bottom: 20px;
     order: 5; }
+    ul.grid .music:before {
+      content: '♫ '; }
   ul.grid li:nth-child(even) {
-    margin-left: 10vw; }
+    margin-left: 10vw;
+    transform: translateY(0%); }
     @media screen and (max-width: 700px) {
       ul.grid li:nth-child(even) {
         margin-left: 0; } }
     ul.grid li:nth-child(even) .wrapper {
       float: right; }
+    ul.grid li:nth-child(even) .music:before {
+      content: ''; }
+    ul.grid li:nth-child(even) .music:after {
+      content: ' ♫'; }
     ul.grid li:nth-child(even) a, ul.grid li:nth-child(even) img {
       order: 10; }
     ul.grid li:nth-child(even) h1, nav ul.grid li:nth-child(even) li {
@@ -622,3 +646,8 @@ ul.grid {
         ul.grid li:nth-child(even) h1, nav ul.grid li:nth-child(even) li {
           text-align: center;
           transform: none; } }
+
+.full {
+  position: fixed;
+  z-index: 999;
+  border: 1px solid red; }

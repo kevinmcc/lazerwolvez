@@ -8,16 +8,23 @@ $screen-break1: 'screen and (max-width: 1000px)';
 $screen-mobile: 'screen and (max-width: 700px)';
 
 
+
+
 body{
 	font-family: $font;
 	color: black;
-	background-color: #eee;
+	// background-color: #eee;
 	background-attachment: fixed;
 }
 a{
 	color: black; 
 	text-decoration: none;
 	&:visited{color: black;}
+}
+canvas
+{
+	position: fixed;
+	z-index: 00;
 }
 
 h1{font-size: 1em;}
@@ -27,6 +34,7 @@ h1{font-size: 1em;}
 	width: 100%; max-width: $site-max-width;
 	overflow-x: hidden;
 	margin: auto;
+	background: transparent;
 }
 
 nav{
@@ -58,9 +66,15 @@ nav ul{
 	text-align: center;
 	h2{
 		font-size: 5em;
+		@media #{$screen-mobile}{
+			font-size: 3em;
+		}
 	}
 	margin-bottom: $spacing-unit*4;
 	padding: $spacing-unit*2;
+	@media #{$screen-mobile}{
+		padding: $spacing-unit;
+	}
 }
 
 ul.grid{
@@ -86,7 +100,7 @@ ul.grid{
 		display: inline-flex;
 		align-items: flex-end;
 		perspective: 500px;//IMPORTANT FOR ROTATION
-		border: 1px solid red;
+		// border: 1px solid red;
 		@media #{$screen-mobile}{
 			width: 100%;
 			display: flex;
@@ -99,13 +113,13 @@ ul.grid{
 
 	.wolf-parent{
 		display: block;
+
 	}
 
 	a img{
 		max-width: 600px; max-height: 600px;
-		order: 0;
-		opacity: .6;
 		transition: all 250ms;
+
 		// box-shadow: 0px 15px 20px rgba(0,0,0,.15);
 		@media #{$screen-break1}{
 			max-width: 100%; height: auto;
@@ -113,16 +127,24 @@ ul.grid{
 		@media #{$screen-mobile}{
 			order: 10;
 		}
+
+		&:before{
+			content:'';
+			position: absolute;
+			top: 0; bottom: 0; left: 0; right: 0;
+			background-color: green;
+			border: 1px solid red;
+		}
 	}
 
 	h1{
 		text-align: left;
 		font-size: 6em;
 		line-height: 1em;
+		transform: translateX(-$spacing-unit*2) scale(1);
 
-		transform: translateX(-$spacing-unit*2);
 		order: 5;
-		// background-color: green;
+		
 		@media #{$screen-break1}{
 			font-size: 5em;
 			transform: translateX(-$spacing-unit*4);
@@ -138,10 +160,12 @@ ul.grid{
 		line-height: 1.5em;
 		padding-bottom: $spacing-unit;
 		order: 5;
+		&:before{content:'♫ ';}
 	}
 
 	li:nth-child(even){
 		margin-left: 10vw;
+		transform: translateY(0%);
 		@media #{$screen-mobile}{
 			margin-left: 0;
 		}
@@ -149,6 +173,8 @@ ul.grid{
 		.wrapper{
 			float: right;
 		}
+		.music:before{content: '';}
+		.music:after{content: ' ♫';}
 
 		a, img{
 			order: 10;
@@ -165,5 +191,10 @@ ul.grid{
 			}
 		}
 	}
+}
 
+.full{
+	position: fixed;
+	z-index: 999;
+	border: 1px solid red;
 }

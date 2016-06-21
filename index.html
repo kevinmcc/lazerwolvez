@@ -34,39 +34,246 @@
       </div>
       <li>
         <div class="wrapper">
-          
-          <a href="#w" class="wolf-parent"><img class="wolfpreview" src="old/bw/bw1.jpg"/></a>
+          <a href="#w" class="wolf-parent">
+            <img class="wolf-preview" src="old/bw/bw1.jpg"/>
+            <h1>Cabbie<div class="music">Purple Rain by Prince</div></a></h1>
+          </div>
+        </li>
+        <li>
+          <div class="wrapper">
+            <a href="#w" class="wolf-parent">
+              <img class="wolf-preview" src="old/bw/bw2.jpg"/>
+              <h1>Glitch<div class="music">Purple Rain by Prince</div></a></h1>
+            </div>
+          </li>
+          <li>
+            <div class="wrapper">
+              <a href="#w" class="wolf-parent">
+                <img class="wolf-preview" src="old/bw/bw3.jpg"/>
+                <h1>Horse Power<div class="music">Purple Rain by Prince</div></a></h1>
+              </div>
+            </li>
+            <li>
+              <div class="wrapper">
+                <a href="#w" class="wolf-parent">
+                  <img class="wolf-preview" src="old/bw/bw4.jpg"/>
+                  <h1>Lazer Bros<div class="music">Purple Rain by Prince</div></a></h1>
+                </div>
+              </li>
+              <li>
+                <div class="wrapper">
+                  <a href="#w" class="wolf-parent">
+                    <img class="wolf-preview" src="old/bw/bw5.jpg"/>
+                    <h1>Wolf Ping<div class="music">Purple Rain by Prince</div></a></h1>
+                  </div>
+                </li>
 
-          <h1>Cabbie<div class="music">Purple Rain by Prince</div></h1>
-        </div>
-      </li>
-    <li>
-        <div class="wrapper">
-          <a href="#w" class="wolf-parent"><img class="wolfpreview" src="old/bw/bw2.jpg"/></a>
-          <h1>Glitch<div class="music">Purple Rain by Prince</div></h1>
-        </div>
-      </li>
-    <li>
-        <div class="wrapper">
-          <a href="#w" class="wolf-parent"><img class="wolfpreview" src="old/bw/bw3.jpg"/></a>
-          <h1>Horse Power<div class="music">Purple Rain by Prince</div></h1>
-        </div>
-      </li>
-    <li>
-        <div class="wrapper">
-          <a href="#w" class="wolf-parent"><img class="wolfpreview" src="old/bw/bw4.jpg"/></a>
-          <h1>Lazer Bros<div class="music">Purple Rain by Prince</div></h1>
-        </div>
-      </li>
-    <li>
-        <div class="wrapper">
-          <a href="#w" class="wolf-parent"><img class="wolfpreview" src="old/wolvez/wolfping.gif"/></a>
-          <h1>Wolf Ping<div class="music">Purple Rain by Prince</div></h1>
-        </div>
-      </li>
+                <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+                <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+                <script src="js/main.js"></script>
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
-    <script src="js/main.js"></script>
-  </body>
-  </html>
+                <script src="../threejs/build/three.js"></script>
+
+                <script src="../threejs/examples/js/shaders/CopyShader.js"></script>
+                <script src="../threejs/examples/js/shaders/DigitalGlitch.js"></script>
+
+                <script src="../threejs/examples/js/postprocessing/EffectComposer.js"></script>
+                <script src="../threejs/examples/js/postprocessing/RenderPass.js"></script>
+                <script src="../threejs/examples/js/postprocessing/MaskPass.js"></script>
+                <script src="../threejs/examples/js/postprocessing/ShaderPass.js"></script>
+                <script src="../threejs/examples/js/postprocessing/GlitchPass.js"></script>
+
+                <script id="effect_vertexShader" type="x-shader/x-vertex">
+                  varying vec2 vUv;
+                  void main() {
+                    vUv = uv;gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0)*.5;
+                  }
+                </script>
+
+                <script id="effect_fragmentShader" type="x-shader/x-fragment">
+                  varying vec2 vUv;
+
+                  uniform vec2 resolution;
+                  uniform vec2 mouse;
+
+                  uniform float time;
+                  uniform float special;
+
+                  float usin(float value) {
+                    return cos(value * 6.2831853)*0.5 + 0.5;
+                  }
+
+
+                  float noise(vec2 pos, float time) {
+
+                    pos.x += usin(pos.y * 0.1 + mouse.x*0.0001) ;
+                    pos.y += usin(mouse.y*0.0001);
+
+                    float valueX = 0.0;
+
+                    valueX += usin(pos.x + time * 0.01 + usin(pos.y * 0.5 + 0.1) * 0.05);
+                    valueX += usin(pos.y +  1.0 + usin(pos.y * 0.5 + time * 0.1) * usin(pos.x * 0.05)* 0.05) ;
+                    valueX /= 2.0;
+
+                    float valueY = 0.0;
+
+                    valueY += usin(pos.x + usin(pos.x * 0.5+ 0.2)*0.05);
+                    valueY += usin(pos.y * 0.1 + usin(pos.x * 0.1  + time * 0.1) * usin(pos.y * 0.05)* 0.05);
+                    valueY /= 2.0;
+
+                    float value = valueX * valueY;
+
+                    return value;
+                  }
+
+
+                  void main(){
+                    vec2 sourceCoord = vUv - 0.5;
+                    sourceCoord.x *= resolution.x / resolution.y;
+
+                    vec4 outputColour = vec4(0.0, 0.0, 0.0, 1.0);
+
+                    float noise1 = noise(sourceCoord, time);
+                    float noise2 = noise(sourceCoord * 0.5 + noise1 +3412.124, time);
+                    float noise3 = noise(sourceCoord * 0.1 + vec2(noise1, noise2) +2.124, time);
+
+                    float noiseVal = (noise1 + noise2 + noise3)/3.;
+
+                    for (int i = 1; i < 4; i++) {
+                      noiseVal = usin(noiseVal+mouse.x+time*0.09);
+                    }
+
+                    noiseVal = noise(sourceCoord * 2.0 + noiseVal + 3.412, time);
+
+                    outputColour.rgb = vec3(noiseVal*1.0);
+                    outputColour.b = cos(noiseVal*sin(time)*.9+special*.1*cos(special));
+                    outputColour.g = cos(noiseVal*sin(time)*.9-special*.1*sin(time));
+                    outputColour.r = cos(noiseVal*sin(time)*.9+special*.1*cos(time));
+
+                    gl_FragColor = outputColour;
+                  }
+
+                </script>
+
+                <script>
+
+                  var camera, scene, renderer, composer;
+                  var object, light;
+
+                  var glitchPass;
+                  var filmPass;
+
+                  var effectScene = null;
+                  var effectCamera = null;
+
+                  var effectShader = null;
+                  var effectShaderMaterial = null;
+                  var effectSurfaceMesh = null;
+
+                  var effectTexture1 = null;
+
+                  var time = 0;
+
+                  var mX = 0;
+                  var mY = 0;
+
+                  var lastMY = 0;
+                  var lastMX = 0;
+
+                  var special = 0;
+
+                  init();
+                  animate();
+
+                  function init() {
+
+                    renderer = new THREE.WebGLRenderer();
+                    renderer.setPixelRatio( window.devicePixelRatio );
+                    renderer.setSize( window.innerWidth, window.innerHeight );
+                    $("#page-wrapper").prepend( renderer.domElement );
+
+
+
+                    clock = new THREE.Clock();
+
+                    effectScene = new THREE.Scene();
+                    effectCamera = new THREE.OrthographicCamera( - 1, 1, 1, - 1, 0, 1 );
+
+                    effectShader = {
+                      uniforms: {
+                        "time":   { type: "f", value: 0 },
+                        "mouse": {type: "2f", value: [0, 0]},
+                        "special":   { type: "f", value: 0 },
+                        "viewSize":   { type: "2f", value: [1024, 768] },
+                        "image1Size":   { type: "2f", value: [1024, 768]},
+                        "resolution": {type: "2f", value: [window.innerWidth, window.innerHeight]}
+                      },
+                      vertexShader: document.getElementById('effect_vertexShader').textContent,
+                      fragmentShader: document.getElementById('effect_fragmentShader').textContent
+                    };
+                    effectShaderMaterial = new THREE.ShaderMaterial(effectShader);
+
+                    effectSurfaceMesh = new THREE.Mesh(new THREE.PlaneBufferGeometry( 2, 2 ), effectShaderMaterial);
+                    effectScene.add(effectSurfaceMesh);
+
+                    /* postprocessing */
+
+                    composer = new THREE.EffectComposer( renderer );
+                    composer.addPass( new THREE.RenderPass( effectScene, effectCamera ) );
+
+                    glitchPass = new THREE.GlitchPass();
+                    glitchPass.renderToScreen = false;
+                    composer.addPass( glitchPass );
+
+                    window.addEventListener( 'resize', onWindowResize, false );
+                    window.onmousemove = updateMousePosition;
+
+                  }
+
+                  function onWindowResize() {
+
+                    camera.updateProjectionMatrix();
+
+                    renderer.setSize( window.innerWidth, window.innerHeight );
+                    composer.setSize( window.innerWidth, window.innerHeight );
+                  }
+
+                  function updateMousePosition(e) {
+                    mX = e.pageX;
+                    mY = e.pageY;
+                  }
+
+                  function animate() {
+
+                    requestAnimationFrame( animate );
+
+                    var time = Date.now();
+
+                    time = clock.getElapsedTime();
+
+                    lastMX += (mX - lastMX)/1;
+                    lastMY += (mY - lastMY)/1;
+
+                    special += (0 - special)/10;
+
+                    renderer.render(effectScene, effectCamera);
+                    effectShaderMaterial.uniforms['time'].value = time/2;
+                    effectShaderMaterial.uniforms['mouse'].value = [lastMX, lastMY];
+                    effectShaderMaterial.uniforms['special'].value = special;
+
+                    composer.render();
+                  }
+
+                  var specialTimer;
+                  $("a img").hover(function(){
+                    specialTimer = setInterval(function(){special = lastMY/1000;},10);
+                    glitchPass.renderToScreen = true;
+                  }, function(){
+                    console.log("off");
+                    clearInterval(specialTimer);
+                    glitchPass.renderToScreen = false;
+                  })
+
+                </script>
+              </body>
+              </html>

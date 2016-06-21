@@ -15,19 +15,18 @@ $(document).ready(function(){
 	window.addEventListener('mousemove', function(e){
 		mouse.x = e.clientX;
 		mouse.y = e.clientY;
-		// lastMouse.x += (mouse.x - lastMouse.x)/10;
-		// lastMouse.y += (mouse.y - lastMouse.y)/10;
 	});
 
 	$(window).on('touchmove', function(e){
 		// e.preventDefault();
 		var x = e.originalEvent.changedTouches[0].clientX;
 		var y = e.originalEvent.changedTouches[0].clientY;
-
-
 		mouse.x = x;
 		mouse.y = y;
 	});
+
+	//GYRO??
+	//http://stackoverflow.com/questions/4378435/how-to-access-accelerometer-gyroscope-data-from-javascript
 
 	//window resize
 	window.onresize = function() {
@@ -35,15 +34,13 @@ $(document).ready(function(){
 		getWolfPreviews();
 	};
 
-
 	//INIT
 	getWolfPreviews();
-
 
 	//WOLF PREVIEWS
 	function getWolfPreviews()
 	{
-		$('img.wolfpreview').each(function(){
+		$('img.wolf-preview').each(function(){
 			var el = $(this);
 			var offset = el.offset();
 			var width = el.width();
@@ -63,12 +60,14 @@ $(document).ready(function(){
 	}
 	
 	$('.wolf-parent').hover(function(){
-		var child = $(this).find('img.wolfpreview');
-		var i = $('.wolf-parent').index(this);
+		var child = $(this).parent().parent().find('img.wolf-preview');
+		var i = $('img.wolf-preview').index(child);
 		wolves[i].isActive = true ;
+
 		AF.start();
 	}, function(){
-		var i = $('.wolf-parent').index(this);
+		var child = $(this).parent().parent().find('img.wolf-preview');
+		var i = $('img.wolf-preview').index(child);
 		wolves[i].isActive = false ;
 	});
 
@@ -79,8 +78,8 @@ $(document).ready(function(){
 			//is NOT ACTIVE but has rotation values left
 			if((!wolf.isActive) && (Math.abs(wolf.rotationY) > .5 || Math.abs(wolf.rotationX) > .5)){
 
-				wolf.rotationX += (0-wolf.rotationX)/10;//set to 0 in 10 frames
-				wolf.rotationY += (0-wolf.rotationY)/10;//set to 0 in 10 frames
+				wolf.rotationX += (0-wolf.rotationX)/15;//set to 0 in 20 frames
+				wolf.rotationY += (0-wolf.rotationY)/15;//set to 0 in 20 frames
 
 				wolf.el.style.transform = 'rotateX('+wolf.rotationX+'deg) rotateY('+wolf.rotationY+'deg)';
 			}
@@ -103,8 +102,24 @@ $(document).ready(function(){
 				wolf.el.style.transform = 'rotateX('+wolf.rotationX+'deg) rotateY('+wolf.rotationY+'deg)';
 			}
 		}
-
 	}
+
+	$('.wolf-parent').click(function(){
+		var child = $(this).find('img.wolf-preview');
+		var i = $('img.wolf-preview').index(child);
+
+
+		wolfimage = $(this).parent().parent().find('img.wolf-preview').attr("src");
+
+		var div = document.createElement('div'); div.className = 'full';
+		div.style.width = wolves[i].width+'px'; div.style.height = wolves[i].height+'px';
+		div.style.left = wolves[i].left+'px'; div.style.top = wolves[i].top-document.body.scrollTop+'px';
+
+		div.style.backgroundImage = 'url('+wolfimage+')';
+		div.style.backgroundSize = wolves[i].width+'px, '+wolves[i].height+'px';
+
+		document.body.appendChild(div);
+	});
 
 	AF.add('wolfHover', function(){
 		wolfHover();
