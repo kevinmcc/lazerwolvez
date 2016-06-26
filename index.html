@@ -19,59 +19,92 @@
   		<ul>
   			<a href="#home">
   				<li>LAZERWOLVEZ</li>
-  				<li>OTHER</li>
-  				<li>SUBMIT</li>
+  				<li>SUBMIT A WOLF</li>
   			</a>
   		</ul>
   	</nav>
     <ul class="grid">
-      <div class="about">
-        <h2>LAZERWOLVES</h2>
-        <p>a lil something here and here to describe what the wolf life is all about</p>
-        <br>
-        <br>
-        <br>
-      </div>
       <li>
+        <div class="about">
+          <h2>LAZERWOLVES</h2><br>
+          <p>a lil something here and here to describe what the wolf life is all about</p>
+          <br>
+          <br>
+          <br>
+        </div>
+      </li>
+      <li id="0">
         <div class="wrapper">
-          <a href="#w" class="wolf-parent">
-            <img class="wolf-preview" src="old/bw/bw1.jpg"/>
-            <h1>Cabbie<div class="music">Purple Rain by Prince</div></a></h1>
-          </div>
-        </li>
-        <li>
-          <div class="wrapper">
-            <a href="#w" class="wolf-parent">
-              <img class="wolf-preview" src="old/bw/bw2.jpg"/>
-              <h1>Glitch<div class="music">Purple Rain by Prince</div></a></h1>
-            </div>
-          </li>
-          <li>
-            <div class="wrapper">
-              <a href="#w" class="wolf-parent">
-                <img class="wolf-preview" src="old/bw/bw3.jpg"/>
-                <h1>Horse Power<div class="music">Purple Rain by Prince</div></a></h1>
-              </div>
-            </li>
-            <li>
-              <div class="wrapper">
-                <a href="#w" class="wolf-parent">
-                  <img class="wolf-preview" src="old/bw/bw4.jpg"/>
-                  <h1>Lazer Bros<div class="music">Purple Rain by Prince</div></a></h1>
-                </div>
-              </li>
-              <li>
-                <div class="wrapper">
-                  <a href="#w" class="wolf-parent">
-                    <img class="wolf-preview" src="old/bw/bw5.jpg"/>
-                    <h1>Wolf Ping<div class="music">Purple Rain by Prince</div></a></h1>
-                  </div>
-                </li>
+          <div class="wolfparent wolf1"><a href="#"><div class="wolfgif"></div></a></div>
+          <a href="#"><div class="wolftitle">Zero Index Here</div></a>
+          <div class="wolfmusic"><a href="#">Purple Rain by Prince</a></div>
+        </div>
+      </li>
+      <li id="1">
+        <div class="wrapper">
+          <div class="wolfparent wolf1"><a href="#"><div class="wolfgif"></div></a></div>
+          <a href="#"><div class="wolftitle">One Index Here</div></a>
+          <div class="wolfmusic"><a href="#">Purple Rain by Prince</a></div>
+        </div>
+      </li>
+      <li id="2">
+        <div class="wrapper">
+          <div class="wolfparent wolf2"><a href="#"><div class="wolfgif"></div></a></div>
+          <a href="#"><div class="wolftitle">Two Doggy</div></a>
+          <div class="wolfmusic"><a href="#">Purple Rain by Prince</a></div>
+        </div>
+      </li>
+      </li>
+      <li>
+      </li>
+      <li>
+      </li>
 
-                <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-                <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
-                <script src="js/main.js"></script>
+      <style>
+        .wolf1{
+          width: 70vw; height: 500px;
+          background: url('images/4.jpg');
+          background-size: 100% 100%;
+        }
+        .wolf1::before{
+          display: block;
+          content: '';
+          width: 100%;
+          padding-top: %;
+        }
+        .wolf1 * .wolfgif{
+          position: absolute;
+          width: 100%; height: 100%;
+          top: 0; left: 0;
+          z-index: 990;
+          background: url('images/4.gif');
+        }
 
+        .wolf2{
+          width: 70vw; height: 500px;
+          background: url('images/6.jpg');
+          background-size: 100% 100%;
+        }
+        .wolf2::before{
+          display: block;
+          content: '';
+          width: 100%;
+          padding-top: 26%;
+        }
+        .wolf2 * .wolfgif{
+          position: absolute;
+          width: 100%; height: 100%;
+          top: 0; left: 0;
+          z-index: 990;
+          background: url('images/6.gif');
+        }
+
+      </style>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+      <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+      <script src="js/main.js"></script>
+      
                 <script src="../threejs/build/three.js"></script>
 
                 <script src="../threejs/examples/js/shaders/CopyShader.js"></script>
@@ -146,9 +179,9 @@
                     noiseVal = noise(sourceCoord * 2.0 + noiseVal + 3.412, time);
 
                     outputColour.rgb = vec3(noiseVal*1.0);
-                    outputColour.b = cos(noiseVal*sin(time)*.9+special*.1*cos(special));
-                    outputColour.g = cos(noiseVal*sin(time)*.9-special*.1*sin(time));
-                    outputColour.r = cos(noiseVal*sin(time)*.9+special*.1*cos(time));
+                    outputColour.b = cos(noiseVal*sin(time)*.7+special*.7*cos(special));
+                    outputColour.g = cos(noiseVal*sin(time)*.7-special*.7*sin(time));
+                    outputColour.r = cos(noiseVal*sin(time)*.7+special*.7*cos(mouse.x));
 
                     gl_FragColor = outputColour;
                   }
@@ -192,8 +225,6 @@
                     renderer.setSize( window.innerWidth, window.innerHeight );
                     $("#page-wrapper").prepend( renderer.domElement );
 
-
-
                     clock = new THREE.Clock();
 
                     effectScene = new THREE.Scene();
@@ -231,16 +262,13 @@
                   }
 
                   function onWindowResize() {
-
-                    camera.updateProjectionMatrix();
-
                     renderer.setSize( window.innerWidth, window.innerHeight );
                     composer.setSize( window.innerWidth, window.innerHeight );
                   }
 
                   function updateMousePosition(e) {
                     mX = e.pageX;
-                    mY = e.pageY;
+                    mY = e.pageY - document.body.scrollTop;
                   }
 
                   function animate() {
@@ -265,15 +293,16 @@
                   }
 
                   var specialTimer;
-                  $("a img").hover(function(){
-                    specialTimer = setInterval(function(){special = lastMY/1000;},10);
+                  $(".wolfparent a , .wolftitle a").hover(function(){
+                    specialTimer = setInterval(function(){special = lastMY/250;},10);
                     glitchPass.renderToScreen = true;
                   }, function(){
-                    console.log("off");
                     clearInterval(specialTimer);
                     glitchPass.renderToScreen = false;
                   })
 
                 </script>
-              </body>
-              </html>
+              
+              
+            </body>
+            </html>

@@ -112,7 +112,7 @@ dfn {
  * Address variable `h1` font-size and margin within `section` and `article`
  * contexts in Firefox 4+, Safari, and Chrome.
  */
-h1, nav ul li {
+h1, nav ul li, ul.grid .wolftitle {
   font-size: 2em;
   margin: 0.67em 0; }
 
@@ -359,7 +359,7 @@ th {
 *:after {
   box-sizing: border-box; }
 
-h1, nav ul li, h2, h3, h4, h5, h6 {
+h1, nav ul li, ul.grid .wolftitle, h2, h3, h4, h5, h6 {
   margin: 0;
   font-weight: normal; }
 
@@ -492,21 +492,20 @@ header {
     background: #F20033; }
 
 body {
-  font-family: "Circular-Bold";
-  color: black;
-  background-attachment: fixed; }
+  font-family: "Circular-Bold", "Helvetica", sans-serif;
+  color: #333; }
 
 a {
-  color: black;
+  color: #333;
   text-decoration: none; }
   a:visited {
-    color: black; }
+    color: #333; }
 
 canvas {
   position: fixed;
-  z-index: 00; }
+  z-index: -100; }
 
-h1, nav ul li {
+h1, nav ul li, ul.grid .wolftitle {
   font-size: 1em; }
 
 #page-wrapper {
@@ -535,119 +534,166 @@ nav ul {
     float: left;
     margin-left: 0; }
   nav ul li {
-    float: right;
     margin-left: 40px; }
 
 .about {
   width: 100%;
+  height: 100vh;
   text-align: center;
-  margin-bottom: 80px;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
   padding: 40px; }
   .about h2 {
     font-size: 5em; }
     @media screen and (max-width: 700px) {
       .about h2 {
         font-size: 3em; } }
-  @media screen and (max-width: 700px) {
+  @media only screen and (max-width: 60em) {
     .about {
       padding: 20px; } }
 
 ul.grid {
   width: 100%;
-  margin-top: 120px;
   box-sizing: border-box;
-  display: inline-flex;
-  flex-wrap: wrap; }
+  overflow-x: hidden;
+  z-index: 1; }
   ul.grid li {
-    width: 80vw;
-    margin-left: 10vw;
-    margin-bottom: 80px; }
-    @media screen and (max-width: 700px) {
-      ul.grid li {
-        width: 100vw;
-        margin-left: 0;
-        padding: 20px; } }
+    position: relative;
+    width: 100vw;
+    height: 40vh;
+    overflow: hidden; }
   ul.grid .wrapper {
-    display: inline-flex;
-    align-items: flex-end;
-    perspective: 500px; }
-    @media screen and (max-width: 700px) {
-      ul.grid .wrapper {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        flex-wrap: wrap; } }
-  ul.grid .wolf-parent {
-    display: block; }
-  ul.grid a img {
-    max-width: 600px;
-    max-height: 600px;
-    transition: all 250ms; }
-    @media screen and (max-width: 1000px) {
-      ul.grid a img {
-        max-width: 100%;
-        height: auto; } }
-    @media screen and (max-width: 700px) {
-      ul.grid a img {
-        order: 10; } }
-    ul.grid a img:before {
-      content: '';
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 600px;
+    z-index: 100;
+    opacity: 0;
+    filter: alpha(opacity=0); }
+  ul.grid .fixed {
+    position: fixed;
+    opacity: 1;
+    filter: alpha(opacity=100);
+    left: 0;
+    z-index: 500;
+    -webkit-transition: opacity 0.7s ease;
+    -moz-transition: opacity 0.7s ease;
+    -ms-transition: opacity 0.7s ease;
+    -o-transition: opacity 0.7s ease;
+    transition: opacity 0.7s ease; }
+  ul.grid .hidden {
+    position: static;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    left: -100%;
+    z-index: 0;
+    -webkit-transition: opacity 0.3s ease 0.1;
+    -moz-transition: opacity 0.3s ease 0.1;
+    -ms-transition: opacity 0.3s ease 0.1;
+    -o-transition: opacity 0.3s ease 0.1;
+    transition: opacity 0.3s ease 0.1; }
+  ul.grid .wrapper, ul.grid .fixed, ul.grid .wolfmusic, ul.grid .wolftitle, ul.grid .wolfparent, ul.grid .wolfgif, ul.grid .full, ul.grid .about {
+    -moz-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d; }
+  ul.grid .wolftitle {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-smoothing: antialiased;
+    letter-spacing: -.05em; }
+  ul.grid .wolfparent {
+    margin: auto;
+    z-index: 900;
+    -webkit-transition: width 0.9s ease 0.1s, height 0.9s ease 0.1s, opacity 0.5s ease 0.3s;
+    -moz-transition: width 0.9s ease 0.1s, height 0.9s ease 0.1s, opacity 0.5s ease 0.3s;
+    -ms-transition: width 0.9s ease 0.1s, height 0.9s ease 0.1s, opacity 0.5s ease 0.3s;
+    -o-transition: width 0.9s ease 0.1s, height 0.9s ease 0.1s, opacity 0.5s ease 0.3s;
+    transition: width 0.9s ease 0.1s, height 0.9s ease 0.1s, opacity 0.5s ease 0.3s; }
+    ul.grid .wolfparent > a > div {
       position: absolute;
       top: 0;
-      bottom: 0;
       left: 0;
       right: 0;
-      background-color: green;
-      border: 1px solid red; }
-  ul.grid h1, nav ul.grid li {
+      bottom: 0;
+      z-index: 900; }
+    ul.grid .wolfparent a {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 900; }
+  ul.grid .wolfgif {
+    background-position: fixed;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    -webkit-transition: opacity 0.5s ease 0s;
+    -moz-transition: opacity 0.5s ease 0s;
+    -ms-transition: opacity 0.5s ease 0s;
+    -o-transition: opacity 0.5s ease 0s;
+    transition: opacity 0.5s ease 0s; }
+  ul.grid .wolftitle {
+    position: absolute;
+    top: 50%;
+    left: 8vw;
+    max-width: 45vw;
+    transform: translateY(-50%) translateZ(0px);
     text-align: left;
-    font-size: 6em;
+    font-size: 8em;
     line-height: 1em;
-    transform: translateX(-40px) scale(1);
-    order: 5; }
-    @media screen and (max-width: 1000px) {
-      ul.grid h1, nav ul.grid li {
-        font-size: 5em;
-        transform: translateX(-80px); } }
-    @media screen and (max-width: 700px) {
-      ul.grid h1, nav ul.grid li {
-        order: 10;
-        text-align: center;
-        transform: none; } }
-  ul.grid .music {
-    font-size: .3em;
-    line-height: 1.5em;
-    padding-bottom: 20px;
-    order: 5; }
-    ul.grid .music:before {
+    z-index: 999; }
+    @media only screen and (max-width: 90em) {
+      ul.grid .wolftitle {
+        font-size: 6em;
+        left: 6vw; } }
+    @media only screen and (max-width: 60em) {
+      ul.grid .wolftitle {
+        font-size: 4em;
+        left: 4vw; } }
+  ul.grid .wolfmusic {
+    position: absolute;
+    bottom: 0;
+    left: 8vw;
+    transform: translateY(50%);
+    font-size: 1em;
+    bottom: 60px;
+    z-index: 999; }
+    ul.grid .wolfmusic:before {
       content: '♫ '; }
-  ul.grid li:nth-child(even) {
-    margin-left: 10vw;
-    transform: translateY(0%); }
-    @media screen and (max-width: 700px) {
-      ul.grid li:nth-child(even) {
-        margin-left: 0; } }
-    ul.grid li:nth-child(even) .wrapper {
-      float: right; }
-    ul.grid li:nth-child(even) .music:before {
-      content: ''; }
-    ul.grid li:nth-child(even) .music:after {
-      content: ' ♫'; }
-    ul.grid li:nth-child(even) a, ul.grid li:nth-child(even) img {
-      order: 10; }
-    ul.grid li:nth-child(even) h1, nav ul.grid li:nth-child(even) li {
-      text-align: right;
-      transform: translateX(40px); }
-      @media screen and (max-width: 1000px) {
-        ul.grid li:nth-child(even) h1, nav ul.grid li:nth-child(even) li {
-          transform: translateX(80px); } }
-      @media screen and (max-width: 700px) {
-        ul.grid li:nth-child(even) h1, nav ul.grid li:nth-child(even) li {
-          text-align: center;
-          transform: none; } }
+    @media only screen and (max-width: 90em) {
+      ul.grid .wolfmusic {
+        left: 6vw; } }
+    @media only screen and (max-width: 60em) {
+      ul.grid .wolfmusic {
+        left: 4vw; } }
+  ul.grid .wolftitle, ul.grid .wolfmusic {
+    -webkit-transition: opacity 0.5s ease;
+    -moz-transition: opacity 0.5s ease;
+    -ms-transition: opacity 0.5s ease;
+    -o-transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease; }
 
 .full {
-  position: fixed;
-  z-index: 999;
-  border: 1px solid red; }
+  overflow-x: hidden;
+  overflow-y: auto; }
+
+.leftarrow a {
+  cursor: url("https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_left_48px-128.png"), e-resize; }
+
+.rightarrow a {
+  cursor: url("http://simpleicon.com/wp-content/uploads/arrow-35-64x64.png"), w-resize; }
