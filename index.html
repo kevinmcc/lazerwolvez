@@ -301,6 +301,9 @@
                     glitchPass.renderToScreen = false;
                   })
 
+                  //HACK: Fixes 3d issue where canvas covers items with translate properties
+                  $('canvas').css("transform", "translateZ(-5000px)");
+
                 </script>
               
               

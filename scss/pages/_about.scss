@@ -70,6 +70,7 @@ canvas
 {
 	position: fixed;
 	z-index: -100;
+	@include transform(translate3d(0,0,0)); -webkit-transform-style: preserve-3d; transform-style:preserve-3d;
 }
 
 h1{font-size: 1em;}
